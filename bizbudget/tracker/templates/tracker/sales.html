@@ -1,0 +1,60 @@
+{% extends 'tracker/base.html' %}
+
+{% block content %}
+
+	<h1>Sales Purchase Requests</h1>
+	<br/>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Requester</th>
+      <th scope="col">Description</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for order in sales_orders %}
+  		{% if order.department == "Sales" %}
+	    <tr>
+	      <th scope="row">{{ order.date }}</th>
+	      <td>
+	      	{% for user in order.requester.all %}
+	      	{{ user }}
+	      	{% endfor %}
+	      	</td>
+	      <td>{{ order.description }}</td>
+	      <td>{{ order.quantity }}</td>
+	      <td>{{ order.price }}</td>
+	    </tr>
+	    {% endif %}
+	{% endfor %}
+  </tbody>
+</table>
+
+<b>Purchase Request Form</b>
+<br/><br/>
+{% if submitted %}
+	Your purchase request was submitted
+	<form action="" method=POST>
+		{% csrf_token %}
+
+		{{ form.as_p }}
+		<input type="submit" value="Submit" class="btn btn-secondary">
+		
+	</form>
+
+{% else %}
+	
+	<form action="" method=POST>
+		{% csrf_token %}
+
+		{{ form.as_p }}
+		<input type="submit" value="Submit" class="btn btn-secondary">
+		
+	</form>
+{% endif %}
+
+{% endblock %}
