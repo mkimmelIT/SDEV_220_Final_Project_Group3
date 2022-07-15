@@ -1,11 +1,11 @@
 from django.db import models
 
 
-class TrackerUser(models.Model):
-	first_name = models.CharField(max_length=30)
-	last_name = models.CharField(max_length=30)
-	department = models.CharField(max_length=10)
-	position = models.CharField(max_length=60)
+class Requester(models.Model):
+	first_name = models.CharField('First Name', max_length=30)
+	last_name = models.CharField('Last Name', max_length=30)
+	department = models.CharField('Department', max_length=10)
+	position = models.CharField('Position', max_length=60)
 	email = models.EmailField('User Email')
 
 
@@ -16,7 +16,7 @@ class TrackerUser(models.Model):
 class Tracker(models.Model):
 	department = models.CharField('Department', max_length=10)
 	date =  models.DateTimeField('Request Date') 
-	requester = models.ManyToManyField(TrackerUser)
+	requester = models.ForeignKey(Requester, blank=True, null=True, on_delete=models.CASCADE)
 	description = models.CharField(max_length=120)
 	quantity = models.PositiveIntegerField()
 	price = models.DecimalField(max_digits=5, decimal_places=2)

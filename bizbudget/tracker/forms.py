@@ -10,15 +10,15 @@ class TrackerForm(ModelForm):
 		labels = {
 			'department': '',
 			'date': '',
-			'requester': '',
+			'requester': 'Requester',
 			'description': '',
 			'quantity': '',
 			'price': '',
 		}
 		widgets = {
 			'department': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Department'}),
-			'date': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Date YYYY-MM-DD'}),
-			'requester': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Requester Name'}),
+			'date': forms.DateInput(attrs={'class':'form-control', 'placeholder':'Date YYYY-MM-DD Time HH:MM:SS'}),
+			'requester': forms.Select(attrs={'class':'form-select'}),
 			'description': forms.TextInput(attrs={'class':'form-control', 'placeholder':'Item Description'}),
 			'quantity': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Quantity'}),
 			'price': forms.NumberInput(attrs={'class':'form-control', 'placeholder':'Price'}),
