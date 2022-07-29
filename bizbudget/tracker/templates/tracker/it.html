@@ -16,8 +16,8 @@
     </tr>
   </thead>
   <tbody>
-  	{% for order in sales_orders %}
-  		{% if order.department == "Sales" %}
+  	{% for order in IT_orders %}
+  		{% if order.department == "IT" %}
 	    <tr>
 	      <th scope="row">{{ order.date }}</th>
 	      <td>{{ order.requester }}</td>
