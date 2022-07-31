@@ -14,27 +14,63 @@ def home(request):
 		})
 
 def admin(request):
+	admin_orders = Tracker.objects.all()
 	now = datetime.now()
 	current_year = now.year
 
+	submitted = False
+	if request.method == "POST":
+		form = TrackerForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect('/tracker/admin?submitted=True')
+	else:
+		form = TrackerForm
+		if 'submitted' in request.GET:
+			submitted = True
+
 	return render(request, 'tracker/admin.html', {
-		"current_year": current_year,
+		"current_year": current_year, "admin_orders": admin_orders, "form":form, "submitted":submitted
 		})
 
 def it(request):
+	IT_orders = Tracker.objects.all()
 	now = datetime.now()
 	current_year = now.year
 
+	submitted = False
+	if request.method == "POST":
+		form = TrackerForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect('/tracker/it?submitted=True')
+	else:
+		form = TrackerForm
+		if 'submitted' in request.GET:
+			submitted = True
+
 	return render(request, 'tracker/it.html', {
-		"current_year": current_year,
+		"current_year": current_year, "IT_orders": IT_orders, "form":form, "submitted":submitted
 		})
 
 def production(request):
+	production_orders = Tracker.objects.all()
 	now = datetime.now()
 	current_year = now.year
 
+	submitted = False
+	if request.method == "POST":
+		form = TrackerForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect('/tracker/production?submitted=True')
+	else:
+		form = TrackerForm
+		if 'submitted' in request.GET:
+			submitted = True
+
 	return render(request, 'tracker/production.html', {
-		"current_year": current_year,
+		"current_year": current_year, "production_orders": production_orders, "form":form, "submitted":submitted
 		})
 
 def sales(request):
