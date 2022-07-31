@@ -16,7 +16,7 @@
     </tr>
   </thead>
   <tbody>
-  	{% for order in Production_orders %}
+  	{% for order in production_orders %}
   		{% if order.department == "Production" %}
 	    <tr>
 	      <th scope="row">{{ order.date }}</th>
